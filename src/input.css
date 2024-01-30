@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.customText {
+    font-size: 20px;
+
+}
+
+
+
+.overflow-box {
+    width: full;
+
+    height: 350px;
+
+    overflow: auto;
+    /* Add overflow behavior */
+    background-color: rgb(214, 159, 159);
+    /* Optional: add border for visual clarity */
+    padding: 5px;
+    /* Optional: add padding for spacing */
+}
+
+@media (min-width: 768px) {
+    .customText {
+        font-size: 34px;
+
+    }
+}

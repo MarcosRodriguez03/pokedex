@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="./dist/output.css">
+</head>
+
+<body class="bg-slate-500 ">
+    <!-- btns -->
+    <div class="flex justify-center">
+        <div
+            class="px-[25px] lg:px-0 max-w-[1720px] w-[1720px] lg:flex lg:flex-row gap-x-12 lg:gap-x-6 md:grid md:grid-cols-3 mt-25px md:mt-[50px] lg:mt-[100px] mb-25px md:mb-[50px]">
+            <input id="inputBox" class=" h-[60px] w-full md:col-span-3 lg:w-[400px] mt-[25px] md:mt-0" type="text">
+            <a href="">
+                <div
+                    class="bg-[#0066FF] h-[60px] flex items-center justify-center lg:w-fit lg:px-[25px] lg:py-[10px] rounded-[15px] mt-[25px] md:mt-[50px] lg:mt-0">
+                    <p class="text-white text-[20px] md:text-3xl text-center">Search</p>
+                </div>
+            </a>
+            <a href="">
+                <div
+                    class="bg-[#3F8A38] h-[60px] flex items-center justify-center lg:w-fit lg:px-[25px] lg:py-[10px] rounded-[15px] mt-[25px] md:mt-[50px] lg:mt-0">
+                    <p class="text-white text-[20px] md:text-3xl text-center">Random</p>
+                </div>
+            </a>
+            <a href="">
+                <div
+                    class="bg-[#FF3F3F] h-[60px] flex items-center justify-center lg:w-fit lg:px-[25px] lg:py-[10px] rounded-[15px] mb-[25px] md:mb-0 mt-[25px] md:mt-[50px] lg:mt-0">
+                    <p class="text-white text-[20px] md:text-3xl text-center">Favorites</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- btns -->
+
+
+    <div class="flex justify-center">
+        <div class="max-w-[1720px]  w-[1720px] ">
+            <div
+                class="rounded-[15px] bg-white grid grid-cols-1 lg:grid-cols-2 gap-y-6 md:gap-y-12 lg:gap-12 p-[25px] md:p-[50px]">
+                <div
+                    class="order-1 lg:order-none rounded-[15px] bg-blue-400 w-full sm:min-h-[655px] sm:h-auto flex justify-center items-center">
+                    <img id="coverPic" src="" alt="">
+                </div>
+                <div class="order-3 rounded-[15px] lg:order-none bg-red-400 min-h-44 lg:h-auto lg:row-span-2 w-full ">
+                    <div class="px-[25px] py-[50px]">
+                        <div class="customText">
+                            <p>Location</p>
+                            <p></p>
+                        </div>
+                        <div class="customText py-[25px] lg:py-[50px] ">
+                            <p>Moves:</p>
+                            <div class="overflow-box">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet excepturi facere,
+                                    impedit
+                                    consectetur adipisci, veniam, corporis laboriosam eveniet dolor eos vel officia
+                                    provident quo doloremque tempore at ipsum totam distinctio.</p>
+                            </div>
+
+                        </div>
+                        <div class="customText">
+                            <p>Abilities:</p>
+                            <div class="overflow-box">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet excepturi facere,
+                                    impedit
+                                    consectetur adipisci, veniam, corporis laboriosam eveniet dolor eos vel officia
+                                    provident quo doloremque tempore at ipsum totam distinctio.</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--start name number type -->
+                <div class="order-2 lg:order-none px-[25px] py-[50px] rounded-[15px] bg-green-400 w-full min-h-44 ">
+                    <span class="flex flex-row gap-x-6 items-center">
+                        <p id="pkmnName" class="customText">Name: Charmander</p>
+                        <img class=" w-[20px] md:w-[40px]  h-[20px]  md:h-[40px]" src="./assets/emptyHeart.png"
+                            alt="fire type test">
+                    </span>
+                    <p id="pkmnNum" class="customText py-[25px] lg:py-[50px]">PokeDex Number: 4</p>
+                    <div class="flex flex-row gap-x-6 items-center" id="injectHere">
+                        <p id="pkmnType" class="customText">Type/s</p>
+                        <img id="typePic" class="w-[120px] h-[40px]" src="./assets/fire.png" alt="fire type test">
+                    </div>
+                </div>
+                <!--end name number type  -->
+
+                <div class="order-4 lg:order-none bg-purple-400 w-full min-h-[300px] h-auto lg:col-span-2">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                        <div class=" flex justify-center items-center">
+                            <img class="" id="evo1" src="./assets/fullHeart.png" alt="placeholder">
+                        </div>
+                        <div class=" flex justify-center items-center">
+                            <img class="" id="evo2" src="./assets/fullHeart.png" alt="placeholder">
+                        </div>
+                        <div class=" flex justify-center items-center">
+                            <img class="" id="evo3" src="./assets/fullHeart.png" alt="placeholder">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div>
+        <script type="module" src="./scripts/app.js"></script>
+    </div>
+</body>
+
+</html>
