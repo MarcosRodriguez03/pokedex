@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="stylesheet" href="dist/output.css">
 </head>
 
-<body class="bg-slate-500 ">
+<body id="background" class="bg-black">
+
+    <div class="bg-[#FF3F3F] w-[1720px] h-[60px]">
+
+        <p>heelo</p>
+    </div>
+
+    </div>
+
     <!-- btns -->
     <div class="flex justify-center">
         <div
@@ -42,20 +50,22 @@
         <div class="max-w-[1720px]  w-[1720px] ">
             <div
                 class="rounded-[15px] bg-white grid grid-cols-1 lg:grid-cols-2 gap-y-6 md:gap-y-12 lg:gap-12 p-[25px] md:p-[50px]">
-                <div
+                <div id="background2"
                     class="order-1 lg:order-none rounded-[15px] bg-blue-400 w-full sm:min-h-[655px] sm:h-auto flex justify-center items-center">
                     <img id="coverPic" src="" alt="">
                 </div>
+
                 <div class="order-3 rounded-[15px] lg:order-none bg-red-400 min-h-44 lg:h-auto lg:row-span-2 w-full ">
                     <div class="px-[25px] py-[50px]">
                         <div class="customText">
                             <p>Location</p>
-                            <p></p>
+                            <p id="locationText"></p>
                         </div>
                         <div class="customText py-[25px] lg:py-[50px] ">
                             <p>Moves:</p>
                             <div class="overflow-box">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet excepturi facere,
+                                <p id="moveText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet excepturi
+                                    facere,
                                     impedit
                                     consectetur adipisci, veniam, corporis laboriosam eveniet dolor eos vel officia
                                     provident quo doloremque tempore at ipsum totam distinctio.</p>
@@ -65,7 +75,8 @@
                         <div class="customText">
                             <p>Abilities:</p>
                             <div class="overflow-box">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet excepturi facere,
+                                <p id="AbilitiesText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
+                                    excepturi facere,
                                     impedit
                                     consectetur adipisci, veniam, corporis laboriosam eveniet dolor eos vel officia
                                     provident quo doloremque tempore at ipsum totam distinctio.</p>

@@ -6,6 +6,18 @@ let pkmnType = document.getElementById("pkmnType");
 let typePic = document.getElementById("typePic");
 let injectHere = document.getElementById("injectHere");
 
+let locationText = document.getElementById("locationText");
+let moveText = document.getElementById("moveText");
+let AbilitiesText = document.getElementById("AbilitiesText");
+let background = document.getElementById("background");
+let background2 = document.getElementById("background2");
+
+
+let bgColor = "";
+
+
+
+
 
 
 
@@ -107,6 +119,8 @@ inputBox.addEventListener('keydown', async (event) => {
         //location
         console.log(await location(pokemon.id))
 
+
+
         let isShiny = false;
         coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
         coverPic.addEventListener('click', () => {
@@ -118,27 +132,54 @@ inputBox.addEventListener('keydown', async (event) => {
                 isShiny = true;
             }
         })
+
+
+
         pkmnName.innerText = "Name: " + pokemon.name;
         pkmnNum.innerText = "Pokedex Number: " + pokemon.id;
-        determineType(typeArr[0])
+        locationText.innerText = await location(pokemon.id);
+        moveText.innerText = moveArray;
+        AbilitiesText.innerText = abilitiesArray;
+
+
+        let check = typeArr[0];
+        console.log(check);
+        determineColor(check)
+
 
         if (typeArr.length > 1) {
 
             injectHere.innerHTML = "";
-            for (let i = 0; i < typeArr.length; i++) {
+            let p = document.createElement("p");
+            p.innerText = "Types: "
+            p.classList.add("customText");
+            injectHere.appendChild(p)
 
+            for (let i = 0; i < typeArr.length; i++) {
 
                 let img = document.createElement("img");
                 img.src = determineType(typeArr[i]);
                 console.log(typeArr[i])
-                img.classList.add("w-[150px]", "h-[40px]")
-
+                img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
 
                 injectHere.appendChild(img);
                 console.log(i)
-
-
             }
+        } else if (typeArr.length == 1) {
+
+            injectHere.innerHTML = "";
+            let p = document.createElement("p");
+            p.innerText = "Types: "
+
+            injectHere.innerHTML = "";
+            let img = document.createElement("img");
+            img.src = determineType(typeArr[0]);
+            console.log(typeArr[0])
+            img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
+
+
+            injectHere.appendChild(img);
+
         }
 
 
@@ -150,39 +191,146 @@ inputBox.addEventListener('keydown', async (event) => {
 const determineType = (type) => {
     switch (type) {
         case "fire":
+
             return "./assets/fire.png";
         case "bug":
+
             return "./assets/BugIC_Big.png";
         case "dark":
+
             return "./assets/DarkIC_Big.png";
         case "dragon":
+
             return "./assets/DragonIC_Big.png";
         case "electric":
+
             return "./assets/ElectricIC_Big.png";
         case "fighting":
+
             return "./assets/fightingIC_Big.png";
         case "flying":
+
             return "./assets/FlyingIC_Big.png";
         case "ghost":
+
             return "./assets/GhostIC_Big.png";
         case "grass":
+
             return "./assets/GrassIC_Big.png";
         case "ground":
+
             return "./assets/GroundIC_Big.png";
         case "ice":
+
             return "./assets/IceIC_Big.png";
         case "normal":
+
             return "./assets/NormalIC_Big.png";
         case "poison":
+
             return "./assets/PoisonIC_Big.png";
         case "psychic":
+
             return "./assets/PsychicIC_Big.png";
         case "rock":
+
             return "./assets/RockIC_Big.png";
         case "steel":
+
             return "./assets/SteelIC_Big.png";
         case "water":
+
             return "./assets/WaterIC_Big.png";
+
+    }
+}
+const determineColor = (type) => {
+    switch (type) {
+        case "fire":
+            background.className = ""
+            background.style = "background-color: #F89030 ;";
+            background2.style = "background-color: #F89030 ;";
+            break;
+
+        case "bug":
+            background.style = "background-color: #A0C887 ;";
+            background2.style = "background-color: #A0C887 ;";
+            break;
+
+        case "dark":
+            background.style = "background-color: #775444 ;";
+            background2.style = "background-color: #775444 ;";
+            break;
+
+        case "dragon":
+            background.style = "background-color: #7666EE ;";
+            background2.style = "background-color: #7666EE ;";
+            break;
+
+        case "electric":
+            background.style = "background-color: #E4E451 ;";
+            background2.style = "background-color: #E4E451 ;";
+            break;
+
+        case "fighting":
+            background.style = "background-color: #F87070 ;";
+            background2.style = "background-color: #F87070 ;";
+            break;
+
+        case "flying":
+            background.style = "background-color: #58C8F0 ;";
+            background2.style = "background-color: #58C8F0 ;";
+            break;
+
+        case "ghost":
+            background.style = "background-color: #A86FF8 ;";
+            background2.style = "background-color: #A86FF8 ;";
+            break;
+
+        case "grass":
+            background.style = "background-color: #8FE87F ;";
+            background2.style = "background-color: #8FE87F ;";
+            break;
+
+        case "ground":
+            background.style = "background-color: #B99644 ;";
+            background2.style = "background-color: #B99644 ;";
+            break;
+
+        case "ice":
+            background.style = "background-color: #76DDFF ;";
+            background2.style = "background-color: #76DDFF ;";
+            break;
+
+        case "normal":
+            background.style = "background-color: #B8B8A8 ;";
+            background2.style = "background-color: #B8B8A8 ;";
+            break;
+
+        case "poison":
+            background.style = "background-color: #E090F8 ;";
+            background2.style = "background-color: #E090F8 ;";
+            break;
+
+        case "psychic":
+            background.style = "background-color: #FA6DBD ;";
+            background2.style = "background-color: #FA6DBD ;";
+            break;
+
+        case "rock":
+            background.style = "background-color: #BE9845 ;";
+            background2.style = "background-color: #BE9845 ;";
+            break;
+
+        case "steel":
+            background.style = "background-color: #B8B8D0 ;";
+            background2.style = "background-color: #B8B8D0 ;";
+            break;
+
+        case "water":
+            background.style = "background-color: #6798F8 ;";
+            background2.style = "background-color: #6798F8 ;";
+            break;
 
     }
 
