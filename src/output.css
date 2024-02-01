@@ -580,6 +580,14 @@ video {
   height: 20px;
 }
 
+.h-\[25px\] {
+  height: 25px;
+}
+
+.h-\[300px\] {
+  height: 300px;
+}
+
 .h-\[40px\] {
   height: 40px;
 }
@@ -612,6 +620,18 @@ video {
   width: 20px;
 }
 
+.w-\[300px\] {
+  width: 300px;
+}
+
+.w-\[500px\] {
+  width: 500px;
+}
+
+.w-\[75px\] {
+  width: 75px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -636,18 +656,23 @@ video {
   justify-content: center;
 }
 
-.gap-5 {
-  gap: 1.25rem;
-}
-
 .gap-x-12 {
   -moz-column-gap: 3rem;
        column-gap: 3rem;
 }
 
+.gap-x-5 {
+  -moz-column-gap: 1.25rem;
+       column-gap: 1.25rem;
+}
+
 .gap-x-6 {
   -moz-column-gap: 1.5rem;
        column-gap: 1.5rem;
+}
+
+.gap-y-48 {
+  row-gap: 12rem;
 }
 
 .gap-y-6 {
@@ -668,34 +693,24 @@ video {
   background-color: rgb(63 138 56 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#4D4D4D\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(77 77 77 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#EEEEEE\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(238 238 238 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#FF3F3F\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 63 63 / var(--tw-bg-opacity));
 }
 
-.bg-black {
+.bg-\[\#FFBE8E\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-blue-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
-}
-
-.bg-green-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
-}
-
-.bg-purple-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(192 132 252 / var(--tw-bg-opacity));
-}
-
-.bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+  background-color: rgb(255 190 142 / var(--tw-bg-opacity));
 }
 
 .bg-white {
@@ -743,11 +758,7 @@ video {
   width: full;
   height: 350px;
   overflow: auto;
-  /* Add overflow behavior */
-  background-color: rgb(214, 159, 159);
-  /* Optional: add border for visual clarity */
   padding: 5px;
-  /* Optional: add padding for spacing */
 }
 
 @media (min-width: 768px) {
@@ -793,6 +804,10 @@ video {
 
   .md\:h-\[40px\] {
     height: 40px;
+  }
+
+  .md\:w-\[120px\] {
+    width: 120px;
   }
 
   .md\:w-\[40px\] {

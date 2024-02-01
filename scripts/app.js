@@ -5,21 +5,15 @@ let pkmnNum = document.getElementById("pkmnNum");
 let pkmnType = document.getElementById("pkmnType");
 let typePic = document.getElementById("typePic");
 let injectHere = document.getElementById("injectHere");
+let searchBtn = document.getElementById("searchBtn");
+let randomBtn = document.getElementById("randomBtn");
 
 let locationText = document.getElementById("locationText");
 let moveText = document.getElementById("moveText");
 let AbilitiesText = document.getElementById("AbilitiesText");
 let background = document.getElementById("background");
 let background2 = document.getElementById("background2");
-
-
-let bgColor = "";
-
-
-
-
-
-
+let injectEvo = document.getElementById("injectEvo");
 
 
 
@@ -49,142 +43,364 @@ const evoChainUrl = async (url) => {
     const data = await promise.json();
     return data;
 }
+// inputBox.addEventListener('keydown', async (event) => {
+
+//     if (event.key === "Enter") {
+//         console.clear();
+//         let pokemon = await pokemonApiCall(event.target.value);
+
+
+//         let typeArr = [];
+//         for (let i = 0; i < pokemon.types.length; i++) {
+
+//             typeArr.push(pokemon.types[i].type.name)
+//         }
+
+//         let moveArray = pokemon.moves.map(currentMove => {
+//             return currentMove.move.name.replace("-", " ")
+//         })
+
+
+
+//         //evo chain work
+//         let evoPostMan = await evoChainUrl(await speciesUrl(pokemon.species.url))
+//         let evoArr = [];
+
+
+//         evoArr.push(evoPostMan.chain.species.name)
+//         if (evoPostMan.chain.evolves_to.length > 0) {
+
+//             // console.log(evoPostMan.chain.species.name)
+
+//             if (evoPostMan.chain.evolves_to.length > 1) {
+//                 for (let i = 0; i < evoPostMan.chain.evolves_to.length; i++) {
+//                     evoArr.push(evoPostMan.chain.evolves_to[i].species.name)
+//                     // console.log(evoPostMan.chain.evolves_to[i].species.name)
+
+//                 }
+
+//             } else {
+//                 // console.log(evoPostMan.chain.evolves_to[0].species.name)
+//                 evoArr.push(evoPostMan.chain.evolves_to[0].species.name)
+//                 if (evoPostMan.chain.evolves_to[0].evolves_to.length > 0) {
+//                     evoArr.push(evoPostMan.chain.evolves_to[0].evolves_to[0].species.name)
+//                     // console.log(evoPostMan.chain.evolves_to[0].evolves_to[0].species.name)
+//                 }
+
+//             }
+
+//         }
+
+//         //abilities
+//         let abilitiesArray = pokemon.abilities.map(currentMove => {
+//             return currentMove.ability.name.replace("-", " ")
+//         })
+
+
+
+//         console.log(evoArr)
+//         //type/s
+//         console.log(typeArr)
+//         console.log(abilitiesArray)
+//         //pokemon #
+//         console.log(pokemon.id)
+//         //name
+//         console.log(pokemon.name)
+//         //moves
+//         console.log(moveArray)
+//         //location
+//         console.log(await location(pokemon.id))
+
+
+
+//         let isShiny = false;
+//         coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
+//         coverPic.addEventListener('click', () => {
+//             if (isShiny) {
+//                 coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
+//                 isShiny = false;
+//             } else {
+//                 coverPic.src = pokemon.sprites.other['official-artwork'].front_shiny;
+//                 isShiny = true;
+//             }
+//         })
+
+//         pkmnName.innerText = "Name: " + pokemon.name;
+//         pkmnNum.innerText = "Pokedex Number: " + pokemon.id;
+//         locationText.innerText = await location(pokemon.id);
+//         moveText.innerText = moveArray;
+//         AbilitiesText.innerText = abilitiesArray;
+
+//         let check = typeArr[0];
+//         console.log(check);
+//         determineColor(check)
+
+//         if (typeArr.length > 1) {
+
+//             injectHere.innerHTML = "";
+//             let p = document.createElement("p");
+//             p.innerText = "Types: "
+//             p.classList.add("customText");
+//             injectHere.appendChild(p)
+
+//             for (let i = 0; i < typeArr.length; i++) {
+
+//                 let img = document.createElement("img");
+//                 img.src = determineType(typeArr[i]);
+//                 console.log(typeArr[i])
+//                 img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
+
+//                 injectHere.appendChild(img);
+//                 console.log(i)
+//             }
+//         } else if (typeArr.length == 1) {
+
+//             injectHere.innerHTML = "";
+//             let p = document.createElement("p");
+//             p.innerText = "Types: "
+//             p.classList.add("customText");
+
+
+//             injectHere.innerHTML = "";
+//             let img = document.createElement("img");
+//             img.src = determineType(typeArr[0]);
+//             console.log(typeArr[0])
+//             img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
+
+//             injectHere.appendChild(p)
+//             injectHere.appendChild(img);
+
+//         }
+
+
+//         while (injectEvo.firstChild) {
+//             injectEvo.removeChild(injectEvo.firstChild);
+//         }
+
+//         for (let i = 0; i < evoArr.length; i++) {
+
+
+//             let picSrc = await pokemonApiCall(evoArr[i])
+
+
+//             let div2 = document.createElement("div")
+//             div2.className = "flex justify-center items-center"
+//             let img2 = document.createElement("img")
+//             img2.className = "w-[300px] h-[300px]"
+//             img2.src = picSrc.sprites.other['official-artwork'].front_default;
+//             //pokemon.sprites.other['official-artwork'].front_default
+
+//             div2.appendChild(img2)
+//             injectEvo.appendChild(div2)
+//         }
+
+
+
+
+
+//         //     <div class=" flex justify-center items-center ">
+//         //     <img id="evo1" class="w-[300px] h-[300px]" src="./assets/fullHeart.png" alt="placeholder">
+//         // </div>
+
+//     }
+// })
+
+
+
+
+
 inputBox.addEventListener('keydown', async (event) => {
 
     if (event.key === "Enter") {
-        console.clear();
-        let pokemon = await pokemonApiCall(event.target.value);
+
+        doAll(event.target.value)
+    }
+
+})
+
+searchBtn.addEventListener('click', async (event) => {
+    console.log(inputBox.value)
+    doAll(inputBox.value)
+})
+
+randomBtn.addEventListener('click', async () => {
+    doAll(randomNumGen())
+
+})
 
 
 
-
-        let typeArr = [];
-        for (let i = 0; i < pokemon.types.length; i++) {
-
-            typeArr.push(pokemon.types[i].type.name)
-        }
-
-        let moveArray = pokemon.moves.map(currentMove => {
-            return currentMove.move.name.replace("-", " ")
-        })
+const doAll = async (parameter) => {
 
 
-
-        //evo chain work
-        let evoPostMan = await evoChainUrl(await speciesUrl(pokemon.species.url))
-        let evoArr = [];
+    console.clear();
+    let pokemon = await pokemonApiCall(parameter);
 
 
-        evoArr.push(evoPostMan.chain.species.name)
-        if (evoPostMan.chain.evolves_to.length > 0) {
+    let typeArr = [];
+    for (let i = 0; i < pokemon.types.length; i++) {
 
-            // console.log(evoPostMan.chain.species.name)
+        typeArr.push(pokemon.types[i].type.name)
+    }
 
-            if (evoPostMan.chain.evolves_to.length > 1) {
-                for (let i = 0; i < evoPostMan.chain.evolves_to.length; i++) {
-                    evoArr.push(evoPostMan.chain.evolves_to[i].species.name)
-                    // console.log(evoPostMan.chain.evolves_to[i].species.name)
+    let moveArray = pokemon.moves.map(currentMove => {
+        return currentMove.move.name.replace("-", " ")
+    })
 
-                }
 
-            } else {
-                // console.log(evoPostMan.chain.evolves_to[0].species.name)
-                evoArr.push(evoPostMan.chain.evolves_to[0].species.name)
-                if (evoPostMan.chain.evolves_to[0].evolves_to.length > 0) {
-                    evoArr.push(evoPostMan.chain.evolves_to[0].evolves_to[0].species.name)
-                    // console.log(evoPostMan.chain.evolves_to[0].evolves_to[0].species.name)
-                }
+
+    //evo chain work
+    let evoPostMan = await evoChainUrl(await speciesUrl(pokemon.species.url))
+    let evoArr = [];
+
+
+    evoArr.push(evoPostMan.chain.species.name)
+    if (evoPostMan.chain.evolves_to.length > 0) {
+
+        // console.log(evoPostMan.chain.species.name)
+
+        if (evoPostMan.chain.evolves_to.length > 1) {
+            for (let i = 0; i < evoPostMan.chain.evolves_to.length; i++) {
+                evoArr.push(evoPostMan.chain.evolves_to[i].species.name)
+                // console.log(evoPostMan.chain.evolves_to[i].species.name)
 
             }
 
-        }
-
-        //abilities
-        let abilitiesArray = pokemon.abilities.map(currentMove => {
-            return currentMove.ability.name.replace("-", " ")
-        })
-
-
-
-        console.log(evoArr)
-        //type/s
-        console.log(typeArr)
-        console.log(abilitiesArray)
-        //pokemon #
-        console.log(pokemon.id)
-        //name
-        console.log(pokemon.name)
-        //moves
-        console.log(moveArray)
-        //location
-        console.log(await location(pokemon.id))
-
-
-
-        let isShiny = false;
-        coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
-        coverPic.addEventListener('click', () => {
-            if (isShiny) {
-                coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
-                isShiny = false;
-            } else {
-                coverPic.src = pokemon.sprites.other['official-artwork'].front_shiny;
-                isShiny = true;
+        } else {
+            // console.log(evoPostMan.chain.evolves_to[0].species.name)
+            evoArr.push(evoPostMan.chain.evolves_to[0].species.name)
+            if (evoPostMan.chain.evolves_to[0].evolves_to.length > 0) {
+                evoArr.push(evoPostMan.chain.evolves_to[0].evolves_to[0].species.name)
+                // console.log(evoPostMan.chain.evolves_to[0].evolves_to[0].species.name)
             }
-        })
-
-
-
-        pkmnName.innerText = "Name: " + pokemon.name;
-        pkmnNum.innerText = "Pokedex Number: " + pokemon.id;
-        locationText.innerText = await location(pokemon.id);
-        moveText.innerText = moveArray;
-        AbilitiesText.innerText = abilitiesArray;
-
-
-        let check = typeArr[0];
-        console.log(check);
-        determineColor(check)
-
-
-        if (typeArr.length > 1) {
-
-            injectHere.innerHTML = "";
-            let p = document.createElement("p");
-            p.innerText = "Types: "
-            p.classList.add("customText");
-            injectHere.appendChild(p)
-
-            for (let i = 0; i < typeArr.length; i++) {
-
-                let img = document.createElement("img");
-                img.src = determineType(typeArr[i]);
-                console.log(typeArr[i])
-                img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
-
-                injectHere.appendChild(img);
-                console.log(i)
-            }
-        } else if (typeArr.length == 1) {
-
-            injectHere.innerHTML = "";
-            let p = document.createElement("p");
-            p.innerText = "Types: "
-
-            injectHere.innerHTML = "";
-            let img = document.createElement("img");
-            img.src = determineType(typeArr[0]);
-            console.log(typeArr[0])
-            img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
-
-
-            injectHere.appendChild(img);
 
         }
-
 
     }
-})
+
+    //abilities
+    let abilitiesArray = pokemon.abilities.map(currentMove => {
+        return currentMove.ability.name.replace("-", " ")
+    })
+
+
+
+    console.log(evoArr)
+    //type/s
+    console.log(typeArr)
+    console.log(abilitiesArray)
+    //pokemon #
+    console.log(pokemon.id)
+    //name
+    console.log(pokemon.name)
+    //moves
+    console.log(moveArray)
+    //location
+    console.log(await location(pokemon.id))
+
+
+
+    let isShiny = false;
+    coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
+    coverPic.addEventListener('click', () => {
+        if (isShiny) {
+            coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
+            isShiny = false;
+        } else {
+            coverPic.src = pokemon.sprites.other['official-artwork'].front_shiny;
+            isShiny = true;
+        }
+    })
+
+    pkmnName.innerText = "Name: " + pokemon.name;
+    pkmnNum.innerText = "Pokedex Number: " + pokemon.id;
+    locationText.innerText = await location(pokemon.id);
+    moveText.innerText = moveArray;
+    AbilitiesText.innerText = abilitiesArray;
+
+    let check = typeArr[0];
+    console.log(check);
+    determineColor(check)
+
+    if (typeArr.length > 1) {
+
+        injectHere.innerHTML = "";
+        let p = document.createElement("p");
+        p.innerText = "Types: "
+        p.classList.add("customText");
+        injectHere.appendChild(p)
+
+        for (let i = 0; i < typeArr.length; i++) {
+
+            let img = document.createElement("img");
+            img.src = determineType(typeArr[i]);
+            console.log(typeArr[i])
+            img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
+
+            injectHere.appendChild(img);
+            console.log(i)
+        }
+    } else if (typeArr.length == 1) {
+
+        injectHere.innerHTML = "";
+        let p = document.createElement("p");
+        p.innerText = "Types: "
+        p.classList.add("customText");
+
+
+        injectHere.innerHTML = "";
+        let img = document.createElement("img");
+        img.src = determineType(typeArr[0]);
+        console.log(typeArr[0])
+        img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
+
+        injectHere.appendChild(p)
+        injectHere.appendChild(img);
+
+    }
+
+
+    while (injectEvo.firstChild) {
+        injectEvo.removeChild(injectEvo.firstChild);
+    }
+
+    for (let i = 0; i < evoArr.length; i++) {
+
+
+        let picSrc = await pokemonApiCall(evoArr[i])
+
+
+        let div2 = document.createElement("div")
+        div2.className = "flex justify-center items-center"
+        let img2 = document.createElement("img")
+        img2.className = "w-[300px] h-[300px]"
+        img2.src = picSrc.sprites.other['official-artwork'].front_default;
+        //pokemon.sprites.other['official-artwork'].front_default
+
+        div2.appendChild(img2)
+        injectEvo.appendChild(div2)
+    }
+
+
+
+
+
+    //     <div class=" flex justify-center items-center ">
+    //     <img id="evo1" class="w-[300px] h-[300px]" src="./assets/fullHeart.png" alt="placeholder">
+    // </div>
+
+
+}
+
+
+// doAll("mew")
+
+
+
+
+
+
+
 
 
 
@@ -451,11 +667,7 @@ const determineColor = (type) => {
 
 
 
-const randomNumGen = async () => {
+function randomNumGen() {
     let rndm = Math.floor(Math.random() * 151) + 1;
-    const promise = await fetch('https://pokeapi.co/api/v2/pokemon/' + rndm);
-    const data = await promise.json();
-    // console.log(data);
-    console.log(data.name)
-    return data;
+    return rndm
 }
