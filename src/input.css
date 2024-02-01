@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.customText {
-    font-size: 20px;
-
+.lalezar-regular {
+    font-family: "Lalezar", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
-.overflow-box {
+
+.customText {
+    font-size: 20px;
+    font-family: "Lalezar", system-ui;
+}
+
+.customText2 {
+    font-size: 40px;
+    font-family: "Lalezar", system-ui;
+}
+
+.overflowBox {
     width: full;
     height: 350px;
     overflow: auto;
@@ -19,6 +31,11 @@
 @media (min-width: 768px) {
     .customText {
         font-size: 34px;
+        font-family: "Lalezar", system-ui;
+    }
 
+    .customText2 {
+        font-size: 30px;
+        font-family: "Lalezar", system-ui;
     }
 }

@@ -1,3 +1,5 @@
+import { savelocalStorage, removeFromLocalStorage, getlocalStorage } from "./localstorage.js"
+
 let inputBox = document.getElementById("inputBox");
 let coverPic = document.getElementById("coverPic");
 let pkmnName = document.getElementById("pkmnName");
@@ -7,6 +9,8 @@ let typePic = document.getElementById("typePic");
 let injectHere = document.getElementById("injectHere");
 let searchBtn = document.getElementById("searchBtn");
 let randomBtn = document.getElementById("randomBtn");
+let getFavoritesDiv = document.getElementById("getFavoritesDiv");
+let getFavoritesBtn = document.getElementById("getFavoritesBtn");
 
 let locationText = document.getElementById("locationText");
 let moveText = document.getElementById("moveText");
@@ -14,6 +18,7 @@ let AbilitiesText = document.getElementById("AbilitiesText");
 let background = document.getElementById("background");
 let background2 = document.getElementById("background2");
 let injectEvo = document.getElementById("injectEvo");
+let saveBtn = document.getElementById("saveBtn");
 
 
 
@@ -30,7 +35,7 @@ const location = async (number) => {
         return data[0].location_area.name.replace("-", " ")
     }
     catch (err) {
-        return "No no no, N/A"
+        return "N/A"
     }
 }
 const speciesUrl = async (url) => {
@@ -43,171 +48,11 @@ const evoChainUrl = async (url) => {
     const data = await promise.json();
     return data;
 }
-// inputBox.addEventListener('keydown', async (event) => {
-
-//     if (event.key === "Enter") {
-//         console.clear();
-//         let pokemon = await pokemonApiCall(event.target.value);
-
-
-//         let typeArr = [];
-//         for (let i = 0; i < pokemon.types.length; i++) {
-
-//             typeArr.push(pokemon.types[i].type.name)
-//         }
-
-//         let moveArray = pokemon.moves.map(currentMove => {
-//             return currentMove.move.name.replace("-", " ")
-//         })
-
-
-
-//         //evo chain work
-//         let evoPostMan = await evoChainUrl(await speciesUrl(pokemon.species.url))
-//         let evoArr = [];
-
-
-//         evoArr.push(evoPostMan.chain.species.name)
-//         if (evoPostMan.chain.evolves_to.length > 0) {
-
-//             // console.log(evoPostMan.chain.species.name)
-
-//             if (evoPostMan.chain.evolves_to.length > 1) {
-//                 for (let i = 0; i < evoPostMan.chain.evolves_to.length; i++) {
-//                     evoArr.push(evoPostMan.chain.evolves_to[i].species.name)
-//                     // console.log(evoPostMan.chain.evolves_to[i].species.name)
-
-//                 }
-
-//             } else {
-//                 // console.log(evoPostMan.chain.evolves_to[0].species.name)
-//                 evoArr.push(evoPostMan.chain.evolves_to[0].species.name)
-//                 if (evoPostMan.chain.evolves_to[0].evolves_to.length > 0) {
-//                     evoArr.push(evoPostMan.chain.evolves_to[0].evolves_to[0].species.name)
-//                     // console.log(evoPostMan.chain.evolves_to[0].evolves_to[0].species.name)
-//                 }
-
-//             }
-
-//         }
-
-//         //abilities
-//         let abilitiesArray = pokemon.abilities.map(currentMove => {
-//             return currentMove.ability.name.replace("-", " ")
-//         })
-
-
-
-//         console.log(evoArr)
-//         //type/s
-//         console.log(typeArr)
-//         console.log(abilitiesArray)
-//         //pokemon #
-//         console.log(pokemon.id)
-//         //name
-//         console.log(pokemon.name)
-//         //moves
-//         console.log(moveArray)
-//         //location
-//         console.log(await location(pokemon.id))
-
-
-
-//         let isShiny = false;
-//         coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
-//         coverPic.addEventListener('click', () => {
-//             if (isShiny) {
-//                 coverPic.src = pokemon.sprites.other['official-artwork'].front_default;
-//                 isShiny = false;
-//             } else {
-//                 coverPic.src = pokemon.sprites.other['official-artwork'].front_shiny;
-//                 isShiny = true;
-//             }
-//         })
-
-//         pkmnName.innerText = "Name: " + pokemon.name;
-//         pkmnNum.innerText = "Pokedex Number: " + pokemon.id;
-//         locationText.innerText = await location(pokemon.id);
-//         moveText.innerText = moveArray;
-//         AbilitiesText.innerText = abilitiesArray;
-
-//         let check = typeArr[0];
-//         console.log(check);
-//         determineColor(check)
-
-//         if (typeArr.length > 1) {
-
-//             injectHere.innerHTML = "";
-//             let p = document.createElement("p");
-//             p.innerText = "Types: "
-//             p.classList.add("customText");
-//             injectHere.appendChild(p)
-
-//             for (let i = 0; i < typeArr.length; i++) {
-
-//                 let img = document.createElement("img");
-//                 img.src = determineType(typeArr[i]);
-//                 console.log(typeArr[i])
-//                 img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
-
-//                 injectHere.appendChild(img);
-//                 console.log(i)
-//             }
-//         } else if (typeArr.length == 1) {
-
-//             injectHere.innerHTML = "";
-//             let p = document.createElement("p");
-//             p.innerText = "Types: "
-//             p.classList.add("customText");
-
-
-//             injectHere.innerHTML = "";
-//             let img = document.createElement("img");
-//             img.src = determineType(typeArr[0]);
-//             console.log(typeArr[0])
-//             img.classList.add("md:w-[120px]", "md:h-[40px]", "w-[75px]", "h-[25px]")
-
-//             injectHere.appendChild(p)
-//             injectHere.appendChild(img);
-
-//         }
-
-
-//         while (injectEvo.firstChild) {
-//             injectEvo.removeChild(injectEvo.firstChild);
-//         }
-
-//         for (let i = 0; i < evoArr.length; i++) {
-
-
-//             let picSrc = await pokemonApiCall(evoArr[i])
-
-
-//             let div2 = document.createElement("div")
-//             div2.className = "flex justify-center items-center"
-//             let img2 = document.createElement("img")
-//             img2.className = "w-[300px] h-[300px]"
-//             img2.src = picSrc.sprites.other['official-artwork'].front_default;
-//             //pokemon.sprites.other['official-artwork'].front_default
-
-//             div2.appendChild(img2)
-//             injectEvo.appendChild(div2)
-//         }
 
 
 
 
-
-//         //     <div class=" flex justify-center items-center ">
-//         //     <img id="evo1" class="w-[300px] h-[300px]" src="./assets/fullHeart.png" alt="placeholder">
-//         // </div>
-
-//     }
-// })
-
-
-
-
+let savePkmn = "";
 
 inputBox.addEventListener('keydown', async (event) => {
 
@@ -230,11 +75,13 @@ randomBtn.addEventListener('click', async () => {
 
 
 
+
 const doAll = async (parameter) => {
 
 
     console.clear();
     let pokemon = await pokemonApiCall(parameter);
+    savePkmn = pokemon.name
 
 
     let typeArr = [];
@@ -371,7 +218,10 @@ const doAll = async (parameter) => {
 
 
         let div2 = document.createElement("div")
-        div2.className = "flex justify-center items-center"
+        div2.className = "flex justify-center items-center "
+        div2.addEventListener('click', async function () {
+            doAll(evoArr[i])
+        })
         let img2 = document.createElement("img")
         img2.className = "w-[300px] h-[300px]"
         img2.src = picSrc.sprites.other['official-artwork'].front_default;
@@ -382,7 +232,13 @@ const doAll = async (parameter) => {
     }
 
 
+    let checkIfHere = getlocalStorage()
 
+    if (checkIfHere.includes(savePkmn)) {
+        saveBtn.src = "./assets/fullHeart.png"
+    } else {
+        saveBtn.src = "./assets/emptyHeart.png"
+    }
 
 
     //     <div class=" flex justify-center items-center ">
@@ -393,7 +249,13 @@ const doAll = async (parameter) => {
 }
 
 
-// doAll("mew")
+
+
+
+
+
+
+
 
 
 
@@ -554,26 +416,7 @@ const determineColor = (type) => {
 }
 
 
-
-
-
-
-// let coverPic = document.getElementById("coverPic");
-
-// let randomNum = 0;
-
-
-
-// const evo = async () => {
-//     const promise = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${2}/`);
-//     const data = await promise.json();
-//     // console.log(data);
-//     return data;
-// }
-
-// let value = await pokemonApi();
-// let locations = await location();
-// let evolution = await evo();
+doAll(4)
 
 
 
@@ -586,6 +429,76 @@ const determineColor = (type) => {
 
 
 
+
+saveBtn.addEventListener('click', async () => {
+
+
+    let checkIfHere = getlocalStorage();
+    if (checkIfHere.includes(savePkmn)) {
+        saveBtn.src = "./assets/emptyHeart.png"
+        removeFromLocalStorage(savePkmn)
+    } else {
+
+        saveBtn.src = "./assets/fullHeart.png"
+        savelocalStorage(savePkmn)
+    }
+
+})
+
+getFavoritesBtn.addEventListener('click', () => {
+    let favorites = getlocalStorage();
+
+    //clears get favorites div
+    getFavoritesDiv.textContent = ""
+
+    //map through each element
+    favorites.map(pkmnName => {
+        let div3 = document.createElement("div")
+        div3.className = " px-[25px]  bg-white rounded-[15px] py-[35px] flex justify-between  items-center mt-[25px]  "
+
+        let p = document.createElement("p")
+        p.textContent = pkmnName
+        p.className = " ml-[30%] text-center customText text-black "
+
+        let button = document.createElement('button');
+        button.type = "button";
+        button.textContent = "X"
+        //classlist allows us to be a little more conise it doesnt replace all classes;
+        button.classList.add(
+            "text-gray-400",
+            "bg-transparent",
+            "hover:bg-gray-200",
+            "hover:text-gray-900",
+            "rounded-lg",
+            "text-sm",
+            "w-8",
+            "h-8",
+            "pl-[40px]",
+            "dark:hover:bg-gray-600",
+            "dark:hover:text-white",
+            "mr-[5%]"
+
+
+        )
+
+        button.addEventListener('click', () => {
+            removeFromLocalStorage(pkmnName);
+            div3.remove();
+        })
+
+        p.addEventListener('click', async () => {
+            console.log(pkmnName)
+            doAll(pkmnName)
+
+        })
+
+
+        div3.appendChild(p)
+        div3.appendChild(button)
+        getFavoritesDiv.appendChild(div3)
+    })
+
+})
 
 
 

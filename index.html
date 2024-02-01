@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
     <link rel="stylesheet" href="./src/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+
 </head>
 
 <body id="background" class="bg-[#FFBE8E]">
@@ -16,7 +21,8 @@
     <div class="flex justify-center">
         <div
             class="px-[25px] lg:px-0 max-w-[1720px] w-[1720px] lg:flex lg:flex-row gap-x-12 lg:gap-x-6 md:grid md:grid-cols-3 mt-25px md:mt-[50px] lg:mt-[100px] mb-25px md:mb-[50px]">
-            <input id="inputBox" class=" h-[60px] w-full md:col-span-3 lg:w-[400px] mt-[25px] md:mt-0" type="text">
+            <input id="inputBox" class=" h-[60px] w-full md:col-span-3 lg:w-[400px] mt-[25px] md:mt-0 customText"
+                type="text ">
 
             <div id="searchBtn"
                 class="bg-[#0066FF] h-[60px] flex items-center justify-center lg:w-fit lg:px-[25px] lg:py-[10px] rounded-[15px] mt-[25px] md:mt-[50px] lg:mt-0">
@@ -25,15 +31,18 @@
 
 
             <div id="randomBtn"
-                class="bg-[#3F8A38] h-[60px] flex items-center justify-center lg:w-fit lg:px-[25px] lg:py-[10px] rounded-[15px] mt-[25px] md:mt-[50px] lg:mt-0">
+                class=" bg-[#3F8A38] h-[60px] flex items-center justify-center lg:w-fit lg:px-[25px] lg:py-[10px] rounded-[15px] mt-[25px] md:mt-[50px] lg:mt-0">
                 <p class="text-white text-[20px] md:text-3xl text-center">Random</p>
             </div>
 
 
-            <div
+            <div ata-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example"
+                id="getFavoritesBtn"
                 class="bg-[#FF3F3F] h-[60px] flex items-center justify-center lg:w-fit lg:px-[25px] lg:py-[10px] rounded-[15px] mb-[25px] md:mb-0 mt-[25px] md:mt-[50px] lg:mt-0">
                 <p class="text-white text-[20px] md:text-3xl text-center">Favorites</p>
             </div>
+
+
 
         </div>
     </div>
@@ -47,7 +56,7 @@
                 class="rounded-[15px] bg-white grid grid-cols-1 lg:grid-cols-2 gap-y-6 md:gap-y-12 lg:gap-12 p-[25px] md:p-[50px]">
                 <div id="background2"
                     class="order-1 lg:order-none rounded-[15px] bg-[#FFBE8E] w-full sm:min-h-[655px] sm:h-auto flex justify-center items-center">
-                    <img id="coverPic" class=" w-[500px] h-auto" src="./assets/Charmander.webp" alt="">
+                    <img id="coverPic" class=" w-[500px] h-auto" src="./assets/Charmander.webp" alt="current pkmn">
                 </div>
 
                 <div class="order-3 rounded-[15px] lg:order-none bg-[#EEEEEE] min-h-44 lg:h-auto lg:row-span-2 w-full ">
@@ -58,7 +67,7 @@
                         </div>
                         <div class="customText py-[25px] lg:py-[50px] ">
                             <p>Moves:</p>
-                            <div class="overflow-box">
+                            <div class="overflowBox">
                                 <p id="moveText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet excepturi
                                     facere,
                                     impedit
@@ -69,7 +78,7 @@
                         </div>
                         <div class="customText">
                             <p>Abilities:</p>
-                            <div class="overflow-box">
+                            <div class="overflowBox">
                                 <p id="AbilitiesText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
                                     excepturi facere,
                                     impedit
@@ -87,7 +96,7 @@
                     <span class="flex flex-row gap-x-6 items-center">
                         <p id="pkmnName" class="customText">Name: Charmander</p>
                         <img class=" w-[20px] md:w-[40px]  h-[20px]  md:h-[40px]" src="./assets/emptyHeart.png"
-                            alt="fire type test">
+                            alt="fire type test" id="saveBtn">
                     </span>
                     <p id="pkmnNum" class="customText py-[25px] lg:py-[50px]">PokeDex Number: 4</p>
                     <div class="flex flex-row gap-x-6 items-center" id="injectHere">
@@ -99,15 +108,15 @@
 
                 <div
                     class="order-4 lg:order-none rounded-[15px] bg-[#4D4D4D] w-full min-h-[300px] h-auto lg:col-span-2">
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-5 gap-y-48" id="injectEvo">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-5 gap-y-48 py-[90px]" id="injectEvo">
                         <div class=" flex justify-center items-center ">
-                            <img id="evo1" class="w-[300px] h-[300px]" src="./assets/fullHeart.png" alt="placeholder">
+                            <img id="evo1" class="w-[300px] h-[300px]" src="./assets/Charmander.webp" alt="placeholder">
                         </div>
                         <div class=" flex justify-center items-center ">
-                            <img id="evo2" class="w-[300px] h-[300px]" src="./assets/fullHeart.png" alt="placeholder">
+                            <img id="evo2" class="w-[300px] h-[300px]" src="./assets/charmelion.png" alt="placeholder">
                         </div>
                         <div class=" flex justify-center items-center ">
-                            <img id="evo3" class="w-[300px] h-[300px]" src="./assets/fullHeart.png" alt="placeholder">
+                            <img id="evo3" class="w-[300px] h-[300px]" src="./assets/charizard.png" alt="placeholder">
                         </div>
                     </div>
                 </div>
@@ -118,9 +127,38 @@
 
 
 
+    <div class="text-center mt-5" style="display: none;">
+        <button
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example"
+            aria-controls="drawer-example">
+            Show Favorites
+        </button>
+    </div>
 
+    <!-- drawer component -->
+    <div id="drawer-example"
+        class=" fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white/80 w-9/12 md:w-5/12 dark:bg-gray-800"
+        tabindex="-1" aria-labelledby="drawer-label">
+        <h5 id="drawer-label"
+            class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"></h5>
+        <button type="button" data-drawer-hide="drawer-example" aria-controls="drawer-example"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close menu</span>
+        </button>
+
+        <p id="getFavoritesDiv" class="mt-3 mb-6 text-sm text-gray-500 dark:text-gray-400">Digimon</p>
+
+    </div>
 
     <script type="module" src="./scripts/app.js"></script>
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
 
 </body>
 
