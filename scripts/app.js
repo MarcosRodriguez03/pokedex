@@ -58,14 +58,14 @@ inputBox.addEventListener('keydown', async (event) => {
 
     if (event.key === "Enter") {
 
-        doAll(event.target.value)
+        doAll(event.target.value.toLowerCase())
     }
 
 })
 
 searchBtn.addEventListener('click', async (event) => {
     console.log(inputBox.value)
-    doAll(inputBox.value)
+    doAll(inputBox.value.toLowerCase())
 })
 
 randomBtn.addEventListener('click', async () => {
@@ -319,6 +319,9 @@ const determineType = (type) => {
         case "water":
 
             return "./assets/WaterIC_Big.png";
+        case "fairy":
+
+            return "./assets/fairy.png";
 
     }
 }
@@ -408,6 +411,10 @@ const determineColor = (type) => {
         case "water":
             background.style = "background-color: #6798F8 ;";
             background2.style = "background-color: #6798F8 ;";
+            break;
+        case "fairy":
+            background.style = "background-color: #FFC0CB ;";
+            background2.style = "background-color: #FFC0CB ;";
             break;
 
     }
